@@ -14,7 +14,6 @@ LEADERBOARD_SCREEN_NAME = 'leader'
 
 
 
-
 class MazeGUI(App):
     def build(self):
         return SCREEN_MANAGER
@@ -36,7 +35,7 @@ class StartScreen(Screen):
                 if camera.summon_ball:
                     print('summoning ball')
                     pumps.pump()
-                    sleep(4) #was2
+                    sleep(4)
                     Clock.schedule_once(self.transition)
                     break
             except NameError:
@@ -56,13 +55,7 @@ class PlayScreen(Screen):
     def timer(self):
         global score
         self.timer_button.text = "Ready"
-        time.sleep(7)
-        self.timer_button.text = "Three"
-        time.sleep(1)
-        self.timer_button.text = "Two"
-        time.sleep(1)
-        self.timer_button.text = "One"
-        time.sleep(1)
+        time.sleep(7) # was 5?
         self.timer_button.text = "Go!!!"
         time.sleep(1.3)
         base_time = time.time()
@@ -182,29 +175,29 @@ class LeaderboardScreen(Screen):
         self.score_update()
 
     def score_update(self):
-        scores = []
-        names = []
-        with open("leaderboard.txt", "r") as file:
-            for line in file:
-                split_line = line.strip().split()
-                scores.append(split_line[0])
-                names.append(split_line[1])
-
-        pairs = list(zip(scores, names))
-        pairs.sort(key=lambda pair: int(pair[0]))
-        count = 1
-        score_board = ""
-        with open("leaderboard.txt", "r") as f:
-            leader_length = len(f.readlines())
-
-        while count < leader_length and count <= 10:
-            score_board += str(count) + ".        " + pairs[count][0] + " " + pairs[count][1] + "\n"
-            count += 1
-
-        self.leaderboard.text = score_board
+        # scores = []
+        # names = []
+        # with open("leaderboard.txt", "r") as file:
+        #     for line in file:
+        #         split_line = line.strip().split()
+        #         scores.append(split_line[0])
+        #         names.append(split_line[1])
+        #
+        # pairs = list(zip(scores, names))
+        # pairs.sort(key=lambda pair: int(pair[0]))
+        # count = 1
+        # score_board = ""
+        # with open("leaderboard.txt", "r") as f:
+        #     leader_length = len(f.readlines())
+        #
+        # while count < leader_length and count <= 10:
+        #     score_board += str(count) + ".        " + pairs[count][0] + " " + pairs[count][1] + "\n"
+        #     count += 1
+        #
+        # self.leaderboard.text = score_board
         Clock.schedule_once(self.transition, 5)
-        # that took way too long
-        self.leaderboard.text = ""
+        # # that took way too long
+        self.leaderboard.text = "" # work?
         self.leaderboard_greeting.text = "Thank you\nfor playing!"
 
 

@@ -1,4 +1,8 @@
-10000 Bob
+65 cesar
+64 aiden
+60 cameron
+81 arjun
+77 juan
 10000 Bob
 10000 Bob
 10000 Bob
